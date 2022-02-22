@@ -14,22 +14,31 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
 
-const num = [];
+const number = [];
 
-do {
-
-    const randomNum = getRandomInt(1, 100);
+function generateNumber (num) {
     
-    if(!num.includes(randomNum)) {
-        num.push(randomNum);
-    }
+    do {
+    
+        const randomNum = getRandomInt(1, 100);
+        
+        if(!number.includes(randomNum)) {
+            number.push(randomNum);
+        }
+    
+    } while ( number.length < num )
 
-} while ( num.length < 5 )
+    return number;
+    
+}
 
-const dNum = alert(`I numeri casuali generati da ricordare sono: ${num.join(' ')}`);
+const arrayCompleteRandom = generateNumber(5);
+
+const dNum = alert(`I numeri casuali generati da ricordare sono: ${number.join(' ')}`);
 
 let time = 30;
 
+setTimeout(timerPrincipal, 31000);
 const timerUser = setInterval( timer, 1000);
 
 function timer() {
@@ -42,17 +51,33 @@ function timer() {
 
 }
 
-setTimeout(timerPrincipal, 30000);
-
 function timerPrincipal() {
 
     const numUserArray = [];
     
     do {
     
-        const numUser = prompt ('Inserisci 5 numeri da ricordare');
+        const numUser = parseInt( prompt ('Inserisci 5 numeri da ricordare') );
         numUserArray.push(numUser);
     
     } while ( numUserArray.length < 5 )
 
+    comparaArray(number, numUserArray);
+    
+}
+
+function comparaArray (arrayFirst, arraySecond) {
+
+    for( let i = 0; i < arrayFirst.length; i++ ) {
+
+        const element = arrayFirst[i];
+
+        if (element == arraySecond[i]){
+            console.log(`Hai indovinati questi numeri: ${element}`)
+        } else {
+            console.log(`Non hai indovinato questi numeri:${arrayFirst[i]}`)
+        }
+
+    }
+    
 }
