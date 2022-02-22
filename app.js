@@ -62,20 +62,27 @@ function timerPrincipal() {
     
     } while ( numUserArray.length < 5 )
 
-    comparaArray(number, numUserArray);
+    comparaArray(numUserArray);
+    
+    console.log(`I numeri erano ${number.join(' ')}. Hai indovinato ${sum} numeri: ${resultVerify.join(' ')} e non hai indovinato ${resultError.join(' ')}`);
     
 }
 
-function comparaArray (arrayFirst, arraySecond) {
+const resultVerify = [];
+const resultError = [];
+let sum = 0;
 
-    for( let i = 0; i < arrayFirst.length; i++ ) {
-
-        const element = arrayFirst[i];
-
-        if (element == arraySecond[i]){
-            console.log(`Hai indovinati questi numeri: ${element}`)
+function comparaArray (arraySecond) {
+    
+    for( let i = 0; i < arraySecond.length; i++ ) {
+        
+        const element = arraySecond[i];
+        
+        if (number.includes(element)){
+            resultVerify.push(element);
+            sum++;
         } else {
-            console.log(`Non hai indovinato questi numeri:${arrayFirst[i]}`)
+            resultError.push(element);
         }
 
     }
